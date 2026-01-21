@@ -1,0 +1,17 @@
+domain: taxi_zones
+version: 1
+duplicate_detection:
+  strategy: "fuzzy_same_borough_service_zone"
+  similarity_threshold: 0.92
+  normalize: true
+merge_policy:
+  auto_merge: false
+  reason: "LocationID is authoritative; conflicts require steward review"
+survivorship:
+  source_priority:
+    - source: TLC
+      priority: 1
+  field_rules:
+    borough: "source_priority"
+    zone: "source_priority_else_longest"
+    service_zone: "source_priority_else_validate"

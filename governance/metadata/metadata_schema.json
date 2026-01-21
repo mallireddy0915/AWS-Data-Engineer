@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NYC Taxi Dataset Manifest",
+  "type": "object",
+  "required": ["dataset", "domain", "layer", "owner", "classification", "data_assets"],
+  "properties": {
+    "dataset": { "type": "string" },
+    "domain": { "type": "string" },
+    "layer": { "type": "string", "enum": ["bronze", "silver", "gold"] },
+    "owner": { "type": "string" },
+    "steward": { "type": "string" },
+    "classification": { "type": "string", "enum": ["Public", "Internal", "Confidential", "Restricted"] },
+    "retention_policy": {
+      "type": "object",
+      "properties": {
+        "raw_days": { "type": "integer", "minimum": 0 },
+        "archive": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "data_assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "format"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["reference", "transactional", "master"] },
+          "format": { "type": "string", "enum": ["csv", "parquet", "json"] },
+          "quality_rules": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

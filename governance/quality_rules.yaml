@@ -1,0 +1,28 @@
+dataset: yellow_tripdata
+version: 1
+rules:
+  - name: pickup_before_dropoff
+    type: compare_columns
+    column_a: tpep_pickup_datetime
+    op: "<="
+    column_b: tpep_dropoff_datetime
+    severity: high
+
+  - name: non_negative_trip_distance
+    type: numeric_range
+    column: trip_distance
+    min: 0
+    severity: medium
+
+  - name: non_negative_total_amount
+    type: numeric_range
+    column: total_amount
+    min: 0
+    severity: high
+
+  - name: pu_location_in_lookup
+    type: fk_membership
+    column: PULocationID
+    lookup_csv: taxi_zone_lookup.csv
+    lookup_key: LocationID
+    severity: high

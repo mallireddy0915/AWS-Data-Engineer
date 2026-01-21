@@ -1,0 +1,13 @@
+environments:
+  dev:
+    approvals_required: 0
+  prod:
+    approvals_required: 1
+    approvers:
+      - "data-owner"
+      - "data-steward"
+policy:
+  change_types_requiring_owner:
+    - "schema_change"
+    - "location_id_merge_or_retire"
+    - "retention_policy_change"
