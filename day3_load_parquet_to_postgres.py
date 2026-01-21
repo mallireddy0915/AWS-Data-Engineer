@@ -41,7 +41,7 @@ def main():
 
     cur.close()
     conn.close()
-    print("✅ Done.")
+    print("Done.")
 
 if __name__ == "__main__":
     main()

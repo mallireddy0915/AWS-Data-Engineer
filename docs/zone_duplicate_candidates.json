@@ -1,0 +1,214 @@
+{
+  "generated_utc": "2026-01-21T03:59:07.846064Z",
+  "input": "taxi_zone_lookup.csv",
+  "exact_candidates": [
+    {
+      "type": "exact_composite_duplicate",
+      "composite": "manhattan|governors islandellis islandliberty island|yellow zone",
+      "records": [
+        {
+          "LocationID": 103,
+          "Borough": "Manhattan",
+          "Zone": "Governor's Island/Ellis Island/Liberty Island",
+          "service_zone": "Yellow Zone"
+        },
+        {
+          "LocationID": 104,
+          "Borough": "Manhattan",
+          "Zone": "Governor's Island/Ellis Island/Liberty Island",
+          "service_zone": "Yellow Zone"
+        },
+        {
+          "LocationID": 105,
+          "Borough": "Manhattan",
+          "Zone": "Governor's Island/Ellis Island/Liberty Island",
+          "service_zone": "Yellow Zone"
+        }
+      ]
+    },
+    {
+      "type": "exact_composite_duplicate",
+      "composite": "queens|corona|boro zone",
+      "records": [
+        {
+          "LocationID": 56,
+          "Borough": "Queens",
+          "Zone": "Corona",
+          "service_zone": "Boro Zone"
+        },
+        {
+          "LocationID": 57,
+          "Borough": "Queens",
+          "Zone": "Corona",
+          "service_zone": "Boro Zone"
+        }
+      ]
+    }
+  ],
+  "fuzzy_candidates": [
+    {
+      "type": "fuzzy_zone_duplicate",
+      "borough": "Brooklyn",
+      "service_zone": "Boro Zone",
+      "score": 0.9375,
+      "a": {
+        "LocationID": 21,
+        "Zone": "Bensonhurst East",
+        "zone_n": "bensonhurst east",
+        "Borough": "Brooklyn",
+        "service_zone": "Boro Zone"
+      },
+      "b": {
+        "LocationID": 22,
+        "Zone": "Bensonhurst West",
+        "zone_n": "bensonhurst west",
+        "Borough": "Brooklyn",
+        "service_zone": "Boro Zone"
+      }
+    },
+    {
+      "type": "fuzzy_zone_duplicate",
+      "borough": "Brooklyn",
+      "service_zone": "Boro Zone",
+      "score": 0.9375,
+      "a": {
+        "LocationID": 227,
+        "Zone": "Sunset Park East",
+        "zone_n": "sunset park east",
+        "Borough": "Brooklyn",
+        "service_zone": "Boro Zone"
+      },
+      "b": {
+        "LocationID": 228,
+        "Zone": "Sunset Park West",
+        "zone_n": "sunset park west",
+        "Borough": "Brooklyn",
+        "service_zone": "Boro Zone"
+      }
+    },
+    {
+      "type": "fuzzy_zone_duplicate",
+      "borough": "Manhattan",
+      "service_zone": "Yellow Zone",
+      "score": 0.9333,
+      "a": {
+        "LocationID": 140,
+        "Zone": "Lenox Hill East",
+        "zone_n": "lenox hill east",
+        "Borough": "Manhattan",
+        "service_zone": "Yellow Zone"
+      },
+      "b": {
+        "LocationID": 141,
+        "Zone": "Lenox Hill West",
+        "zone_n": "lenox hill west",
+        "Borough": "Manhattan",
+        "service_zone": "Yellow Zone"
+      }
+    },
+    {
+      "type": "fuzzy_zone_duplicate",
+      "borough": "Manhattan",
+      "service_zone": "Yellow Zone",
+      "score": 0.9474,
+      "a": {
+        "LocationID": 142,
+        "Zone": "Lincoln Square East",
+        "zone_n": "lincoln square east",
+        "Borough": "Manhattan",
+        "service_zone": "Yellow Zone"
+      },
+      "b": {
+        "LocationID": 143,
+        "Zone": "Lincoln Square West",
+        "zone_n": "lincoln square west",
+        "Borough": "Manhattan",
+        "service_zone": "Yellow Zone"
+      }
+    },
+    {
+      "type": "fuzzy_zone_duplicate",
+      "borough": "Manhattan",
+      "service_zone": "Yellow Zone",
+      "score": 0.9524,
+      "a": {
+        "LocationID": 236,
+        "Zone": "Upper East Side North",
+        "zone_n": "upper east side north",
+        "Borough": "Manhattan",
+        "service_zone": "Yellow Zone"
+      },
+      "b": {
+        "LocationID": 238,
+        "Zone": "Upper West Side North",
+        "zone_n": "upper west side north",
+        "Borough": "Manhattan",
+        "service_zone": "Yellow Zone"
+      }
+    },
+    {
+      "type": "fuzzy_zone_duplicate",
+      "borough": "Manhattan",
+      "service_zone": "Yellow Zone",
+      "score": 0.9524,
+      "a": {
+        "LocationID": 237,
+        "Zone": "Upper East Side South",
+        "zone_n": "upper east side south",
+        "Borough": "Manhattan",
+        "service_zone": "Yellow Zone"
+      },
+      "b": {
+        "LocationID": 239,
+        "Zone": "Upper West Side South",
+        "zone_n": "upper west side south",
+        "Borough": "Manhattan",
+        "service_zone": "Yellow Zone"
+      }
+    },
+    {
+      "type": "fuzzy_zone_duplicate",
+      "borough": "Manhattan",
+      "service_zone": "Yellow Zone",
+      "score": 0.9286,
+      "a": {
+        "LocationID": 262,
+        "Zone": "Yorkville East",
+        "zone_n": "yorkville east",
+        "Borough": "Manhattan",
+        "service_zone": "Yellow Zone"
+      },
+      "b": {
+        "LocationID": 263,
+        "Zone": "Yorkville West",
+        "zone_n": "yorkville west",
+        "Borough": "Manhattan",
+        "service_zone": "Yellow Zone"
+      }
+    },
+    {
+      "type": "fuzzy_zone_duplicate",
+      "borough": "Queens",
+      "service_zone": "Boro Zone",
+      "score": 0.92,
+      "a": {
+        "LocationID": 218,
+        "Zone": "Springfield Gardens North",
+        "zone_n": "springfield gardens north",
+        "Borough": "Queens",
+        "service_zone": "Boro Zone"
+      },
+      "b": {
+        "LocationID": 219,
+        "Zone": "Springfield Gardens South",
+        "zone_n": "springfield gardens south",
+        "Borough": "Queens",
+        "service_zone": "Boro Zone"
+      }
+    }
+  ],
+  "counts": {
+    "exact_groups": 2,
+    "fuzzy_pairs": 8
+  }
+}
