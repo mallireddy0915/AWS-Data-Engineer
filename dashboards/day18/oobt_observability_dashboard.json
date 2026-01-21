@@ -1,0 +1,46 @@
+{
+    "widgets": [
+      {
+        "type": "text",
+        "x": 0, "y": 0, "width": 24, "height": 2,
+        "properties": {
+          "markdown": "# OUBT Observability (Technical + Governance)\n**Domain:** NYC_Taxi  \n**Owner:** Operations Team  \n**Certified:** Yes"
+        }
+      },
+      {
+        "type": "metric",
+        "x": 0, "y": 2, "width": 12, "height": 6,
+        "properties": {
+          "region": "us-east-1",
+          "title": "Step Functions Executions (AWS/States)",
+          "view": "timeSeries",
+          "stat": "Sum",
+          "period": 300,
+          "metrics": [
+            ["AWS/States", "ExecutionsStarted", "StateMachineArn", "__STATE_MACHINE_ARN__"],
+            [".", "ExecutionsSucceeded", ".", "."],
+            [".", "ExecutionsFailed", ".", "."],
+            [".", "ExecutionsTimedOut", ".", "."]
+          ]
+        }
+      },
+      {
+        "type": "metric",
+        "x": 12, "y": 2, "width": 12, "height": 6,
+        "properties": {
+          "region": "us-east-1",
+          "title": "Governance KPIs (custom metrics)",
+          "view": "timeSeries",
+          "stat": "Average",
+          "period": 300,
+          "metrics": [
+            ["OUBT/Governance", "PipelineSuccessRate", "Project", "OUBT", "Domain", "NYC_Taxi"],
+            [".", "MasterFreshnessAgeHours", ".", ".", ".", "."],
+            [".", "OrphanRatePU_pct_7d", ".", ".", ".", "."],
+            [".", "OrphanRateDO_pct_7d", ".", ".", ".", "."]
+          ]
+        }
+      }
+    ]
+  }
+  
