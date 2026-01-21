@@ -1,0 +1,115 @@
+{
+  "generated_utc": "2026-01-21T01:44:38.579076Z",
+  "inputs": {
+    "parquet": "yellow_tripdata_2025-08.parquet",
+    "zones_csv": "taxi_zone_lookup.csv"
+  },
+  "row_count": 3574091,
+  "checks": {
+    "pickup_after_dropoff": {
+      "bad_count": 2,
+      "bad_pct": 5.6e-05,
+      "status": "FAIL"
+    },
+    "negative_trip_distance": {
+      "bad_count": 0,
+      "bad_pct": 0.0,
+      "status": "PASS"
+    },
+    "negative_total_amount": {
+      "bad_count": 87940,
+      "bad_pct": 2.460486,
+      "status": "FAIL"
+    },
+    "pu_location_missing_in_lookup": {
+      "bad_count": 0,
+      "bad_pct": 0.0,
+      "status": "PASS"
+    },
+    "do_location_missing_in_lookup": {
+      "bad_count": 0,
+      "bad_pct": 0.0,
+      "status": "PASS"
+    }
+  },
+  "samples": {
+    "pickup_after_dropoff": [
+      {
+        "tpep_pickup_datetime": "2025-08-12 16:00:00",
+        "tpep_dropoff_datetime": "2025-08-12 12:31:07",
+        "PULocationID": 231,
+        "DOLocationID": 74,
+        "total_amount": 36.0
+      },
+      {
+        "tpep_pickup_datetime": "2025-08-17 17:44:00",
+        "tpep_dropoff_datetime": "2025-08-17 17:28:39",
+        "PULocationID": 37,
+        "DOLocationID": 91,
+        "total_amount": 28.0
+      }
+    ],
+    "negative_total_amount": [
+      {
+        "total_amount": -17.15,
+        "fare_amount": -11.4,
+        "tip_amount": 0.0,
+        "tolls_amount": 0.0
+      },
+      {
+        "total_amount": -13.65,
+        "fare_amount": -7.9,
+        "tip_amount": 0.0,
+        "tolls_amount": 0.0
+      },
+      {
+        "total_amount": -12.2,
+        "fare_amount": -7.2,
+        "tip_amount": 0.0,
+        "tolls_amount": 0.0
+      },
+      {
+        "total_amount": -15.05,
+        "fare_amount": -9.3,
+        "tip_amount": 0.0,
+        "tolls_amount": 0.0
+      },
+      {
+        "total_amount": -81.69,
+        "fare_amount": -70.0,
+        "tip_amount": 0.0,
+        "tolls_amount": -6.94
+      },
+      {
+        "total_amount": -11.55,
+        "fare_amount": -5.8,
+        "tip_amount": 0.0,
+        "tolls_amount": 0.0
+      },
+      {
+        "total_amount": -16.45,
+        "fare_amount": -10.7,
+        "tip_amount": 0.0,
+        "tolls_amount": 0.0
+      },
+      {
+        "total_amount": -74.75,
+        "fare_amount": -70.0,
+        "tip_amount": 0.0,
+        "tolls_amount": 0.0
+      },
+      {
+        "total_amount": -18.1,
+        "fare_amount": -15.6,
+        "tip_amount": 0.0,
+        "tolls_amount": 0.0
+      },
+      {
+        "total_amount": -8.75,
+        "fare_amount": -3.0,
+        "tip_amount": 0.0,
+        "tolls_amount": 0.0
+      }
+    ]
+  }
+}
