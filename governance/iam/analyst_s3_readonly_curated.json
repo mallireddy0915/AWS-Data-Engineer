@@ -1,0 +1,33 @@
+{
+    "Version":"2012-10-17",
+    "Statement":[
+      {
+        "Sid":"ListBucketLimited",
+        "Effect":"Allow",
+        "Action":["s3:ListBucket"],
+        "Resource":["arn:aws:s3:::arjun-s3-776312084600"],
+        "Condition":{
+          "StringLike":{
+            "s3:prefix":[
+              "curated/*",
+              "athena-analytics/*",
+              "master/*",
+              "lineage/*"
+            ]
+          }
+        }
+      },
+      {
+        "Sid":"GetObjectsCuratedOnly",
+        "Effect":"Allow",
+        "Action":["s3:GetObject"],
+        "Resource":[
+          "arn:aws:s3:::arjun-s3-776312084600/curated/*",
+          "arn:aws:s3:::arjun-s3-776312084600/athena-analytics/*",
+          "arn:aws:s3:::arjun-s3-776312084600/master/*",
+          "arn:aws:s3:::arjun-s3-776312084600/lineage/*"
+        ]
+      }
+    ]
+  }
+  
