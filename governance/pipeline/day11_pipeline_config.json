@@ -1,0 +1,14 @@
+
+  
+  {
+    "bucket": "arjun-s3-776312084600",
+    "glue_job_name": "nyc-taxi-curated-job-fixed",
+    "glue_catalog_db": "nyc_taxi_db",
+    "glue_catalog_table": "curated_yellow",
+    "dq_ruleset_name": "yellow_trips_ruleset_v1",
+    "dq_results_s3_prefix": "s3://arjun-s3-776312084600/lineage/dq-results/",
+    "master_snapshot_prefix": "master/zones/snapshots/",
+    "master_max_age_hours": 168,
+    "schedule_expression": "cron(0 6 * * ? *)"
+  }
+  

@@ -1,0 +1,202 @@
+{
+    "Comment": "Day11 governed pipeline: audit + master freshness + Glue ETL + Glue DQ + SNS alerts",
+    "StartAt": "InitAudit",
+    "States": {
+      "InitAudit": {
+        "Type": "Task",
+        "Resource": "__AUDIT_LAMBDA_ARN__",
+        "Parameters": {
+          "mode": "init",
+          "execution_id.$": "$$.Execution.Id",
+          "trigger.$": "$.trigger",
+          "inputs.$": "$.inputs"
+        },
+        "ResultPath": "$.audit_init",
+        "Retry": [{
+          "ErrorEquals": ["States.ALL"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2.0
+        }],
+        "Catch": [{
+          "ErrorEquals": ["States.ALL"],
+          "Next": "NotifyFailure"
+        }],
+        "Next": "MasterFreshness"
+      },
+  
+      "MasterFreshness": {
+        "Type": "Task",
+        "Resource": "__MASTER_FRESHNESS_LAMBDA_ARN__",
+        "ResultPath": "$.master_check",
+        "Retry": [{
+          "ErrorEquals": ["States.ALL"],
+          "IntervalSeconds": 3,
+          "MaxAttempts": 2,
+          "BackoffRate": 2.0
+        }],
+        "Catch": [{
+          "ErrorEquals": ["States.ALL"],
+          "Next": "NotifyFailure"
+        }],
+        "Next": "LogMasterCheck"
+      },
+  
+      "LogMasterCheck": {
+        "Type": "Task",
+        "Resource": "__AUDIT_LAMBDA_ARN__",
+        "Parameters": {
+          "mode": "update",
+          "execution_id.$": "$$.Execution.Id",
+          "updates": {
+            "master_check.$": "$.master_check"
+          }
+        },
+        "ResultPath": "$.audit_log_master",
+        "Next": "IsMasterFresh"
+      },
+  
+      "IsMasterFresh": {
+        "Type": "Choice",
+        "Choices": [
+          {
+            "Variable": "$.master_check.fresh",
+            "BooleanEquals": true,
+            "Next": "RunGlueETL"
+          }
+        ],
+        "Default": "NotifyMasterStale"
+      },
+  
+      "NotifyMasterStale": {
+        "Type": "Task",
+        "Resource": "__NOTIFY_LAMBDA_ARN__",
+        "Parameters": {
+          "subject": "Master data stale: steward review needed",
+          "execution_id.$": "$$.Execution.Id",
+          "master_check.$": "$.master_check",
+          "action": "MASTER_STALE_ALERT"
+        },
+        "Next": "RunGlueETL"
+      },
+  
+      "RunGlueETL": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::glue:startJobRun.sync",
+        "Parameters": {
+          "JobName.$": "$.config.glue_job_name",
+          "Arguments.$": "$.glue_arguments"
+        },
+        "ResultPath": "$.glue_run",
+        "Retry": [{
+          "ErrorEquals": ["States.ALL"],
+          "IntervalSeconds": 10,
+          "MaxAttempts": 2,
+          "BackoffRate": 2.0
+        }],
+        "Catch": [{
+          "ErrorEquals": ["States.ALL"],
+          "Next": "NotifyFailure"
+        }],
+        "Next": "LogGlueRun"
+      },
+  
+      "LogGlueRun": {
+        "Type": "Task",
+        "Resource": "__AUDIT_LAMBDA_ARN__",
+        "Parameters": {
+          "mode": "update",
+          "execution_id.$": "$$.Execution.Id",
+          "updates": {
+            "glue_run.$": "$.glue_run"
+          }
+        },
+        "ResultPath": "$.audit_log_glue",
+        "Next": "RunDQGate"
+      },
+  
+      "RunDQGate": {
+        "Type": "Task",
+        "Resource": "__DQ_GATE_LAMBDA_ARN__",
+        "ResultPath": "$.dq",
+        "Catch": [{
+          "ErrorEquals": ["States.ALL"],
+          "Next": "NotifyDQFailure"
+        }],
+        "Next": "LogDQ"
+      },
+  
+      "NotifyDQFailure": {
+        "Type": "Task",
+        "Resource": "__NOTIFY_LAMBDA_ARN__",
+        "Parameters": {
+          "subject": "Data Quality gate FAILED: pipeline blocked",
+          "execution_id.$": "$$.Execution.Id",
+          "action": "DQ_FAILED",
+          "details.$": "$"
+        },
+        "Next": "FinalizeFail"
+      },
+  
+      "LogDQ": {
+        "Type": "Task",
+        "Resource": "__AUDIT_LAMBDA_ARN__",
+        "Parameters": {
+          "mode": "update",
+          "execution_id.$": "$$.Execution.Id",
+          "updates": {
+            "dq.$": "$.dq"
+          }
+        },
+        "ResultPath": "$.audit_log_dq",
+        "Next": "FinalizeSuccess"
+      },
+  
+      "FinalizeSuccess": {
+        "Type": "Task",
+        "Resource": "__AUDIT_LAMBDA_ARN__",
+        "Parameters": {
+          "mode": "update",
+          "execution_id.$": "$$.Execution.Id",
+          "updates": {
+            "status": "SUCCEEDED"
+          }
+        },
+        "Next": "Done"
+      },
+  
+      "FinalizeFail": {
+        "Type": "Task",
+        "Resource": "__AUDIT_LAMBDA_ARN__",
+        "Parameters": {
+          "mode": "update",
+          "execution_id.$": "$$.Execution.Id",
+          "updates": {
+            "status": "FAILED"
+          }
+        },
+        "Next": "FailState"
+      },
+  
+      "NotifyFailure": {
+        "Type": "Task",
+        "Resource": "__NOTIFY_LAMBDA_ARN__",
+        "Parameters": {
+          "subject": "Pipeline execution FAILED (system error)",
+          "execution_id.$": "$$.Execution.Id",
+          "action": "PIPELINE_FAILED",
+          "details.$": "$"
+        },
+        "Next": "FinalizeFail"
+      },
+  
+      "FailState": {
+        "Type": "Fail",
+        "Error": "PipelineFailed",
+        "Cause": "See audit table + notifications for details"
+      },
+  
+      "Done": { "Type": "Succeed" }
+    }
+  }
+  
