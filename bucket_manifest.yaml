@@ -1,0 +1,13 @@
+bucket_name: arjun-s3-776312084600
+owner: "Arjun"
+purpose: "Ingestion landing zone for NYC-Yellow-Trips-Taxi-Data data"
+data_classification: "Internal"
+structure:
+  - prefix: "NYC-Yellow-Trips-Taxi-Data/csv/"
+    description: "Unprocessed CSV files directly from source"
+    retention: "30 days before moving to Glacier"
+  - prefix: "NYC-Yellow-Trips-Taxi-Data/parquet/"
+    description: "Unprocessed Parquet files directly from source"
+access_policy:
+  read: "DataScientists"
+  write: "IngestionLambda"

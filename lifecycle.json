@@ -1,0 +1,15 @@
+{
+    "Rules": [
+        {
+            "ID": "MoveRawToGlacier",
+            "Prefix": "raw/",
+            "Status": "Enabled",
+            "Transitions": [
+                {
+                    "Days": 30,
+                    "StorageClass": "GLACIER"
+                }
+            ]
+        }
+    ]
+}
