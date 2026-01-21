@@ -1,0 +1,1 @@
+REFRESH MATERIALIZED VIEW analytics.mv_revenue_by_borough_month;
