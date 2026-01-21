@@ -1,0 +1,4 @@
+name: yellow_trips_checkpoint
+config_version: 1.0
+class_name: Checkpoint
+run_name_template: "%Y%m%d-%H%M%S-day8"

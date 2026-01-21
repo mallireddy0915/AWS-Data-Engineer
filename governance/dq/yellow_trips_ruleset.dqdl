@@ -1,0 +1,6 @@
+Rules = [
+  IsComplete "tpep_pickup_datetime",
+  IsComplete "tpep_dropoff_datetime",
+  ColumnValues "trip_distance" >= 0,
+  ColumnValues "total_amount" >= 0
+]
