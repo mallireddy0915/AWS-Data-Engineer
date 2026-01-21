@@ -1,0 +1,21 @@
+{
+  "run_id": "20260121_061608",
+  "stage": "curated_enrichment",
+  "inputs": [
+    {
+      "local_parquet": "tmp/validated_yellow_2025-08.parquet"
+    },
+    {
+      "local_csv": "taxi_zone_lookup.csv"
+    }
+  ],
+  "output": {
+    "s3": "s3://arjun-s3-776312084600/curated/yellow/2025/08/yellow_tripdata_2025-08_curated.parquet"
+  },
+  "transformations": [
+    "join PULocationID to zones",
+    "join DOLocationID to zones",
+    "derive trip_duration_minutes"
+  ],
+  "timestamp_utc": "2026-01-21T06:16:08.218158Z"
+}

@@ -1,0 +1,21 @@
+{
+  "run_id": "20260121_061444",
+  "stage": "validated_promotion",
+  "input": {
+    "local_parquet": "yellow_tripdata_2025-08.parquet"
+  },
+  "output": {
+    "s3": "s3://arjun-s3-776312084600/validated/yellow/2025/08/yellow_tripdata_2025-08_validated.parquet"
+  },
+  "quality_gate": {
+    "rules": [
+      "pickup<=dropoff",
+      "trip_distance>=0",
+      "total_amount>=0"
+    ],
+    "rows_in": 3574091,
+    "rows_out": 3486149,
+    "rows_dropped": 87942
+  },
+  "timestamp_utc": "2026-01-21T06:14:44.739669Z"
+}

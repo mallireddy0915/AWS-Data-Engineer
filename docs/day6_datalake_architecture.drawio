@@ -1,0 +1,216 @@
+<mxfile host="app.diagrams.net" modified="2026-01-21T06:30:00.000Z" agent="OUBT-PROJECT" version="22.1.0">
+  <diagram name="S3 Data Lake Architecture" id="s3-datalake-arch">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- Main S3 Bucket Container -->
+        <mxCell id="bucket-main" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="50" y="80" width="700" height="520" as="geometry"/>
+        </mxCell>
+        <mxCell id="bucket-label" value="&lt;b&gt;S3 Data Lake Bucket&lt;/b&gt;&lt;br&gt;shiva-s3-186014908584" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="280" y="90" width="240" height="40" as="geometry"/>
+        </mxCell>
+        
+        <!-- Zone 1: Landing/Raw -->
+        <mxCell id="zone-landing" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="150" width="130" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="landing-title" value="&lt;b&gt;raw/&lt;/b&gt;&lt;br&gt;(Landing Zone)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="85" y="155" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="landing-notes" value="• Immutable original data&lt;br&gt;• Minimal governance&lt;br&gt;• Source of truth" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="85" y="190" width="120" height="70" as="geometry"/>
+        </mxCell>
+        
+        <!-- Zone 2: Validated -->
+        <mxCell id="zone-validated" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="240" y="150" width="130" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="validated-title" value="&lt;b&gt;validated/&lt;/b&gt;&lt;br&gt;(Quality Gate)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="245" y="155" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="validated-notes" value="• Quality checks passed&lt;br&gt;• Schema validated&lt;br&gt;• Basic rule gates" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="245" y="190" width="120" height="70" as="geometry"/>
+        </mxCell>
+        
+        <!-- Zone 3: Curated -->
+        <mxCell id="zone-curated" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="400" y="150" width="130" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="curated-title" value="&lt;b&gt;curated/&lt;/b&gt;&lt;br&gt;(Enriched)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="405" y="155" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="curated-notes" value="• Business rules applied&lt;br&gt;• Master data enriched&lt;br&gt;• Analytics ready" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="405" y="190" width="120" height="70" as="geometry"/>
+        </mxCell>
+        
+        <!-- Zone 4: Master -->
+        <mxCell id="zone-master" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="560" y="150" width="130" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="master-title" value="&lt;b&gt;master/&lt;/b&gt;&lt;br&gt;(Golden Records)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="565" y="155" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="master-notes" value="• Golden records only&lt;br&gt;• Strict governance&lt;br&gt;• Steward approval" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="565" y="190" width="120" height="70" as="geometry"/>
+        </mxCell>
+        
+        <!-- Zone 5: Archive -->
+        <mxCell id="zone-archive" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="300" width="130" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="archive-title" value="&lt;b&gt;archive/&lt;/b&gt;&lt;br&gt;(Retention)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="85" y="305" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="archive-notes" value="• Compliance retention&lt;br&gt;• Immutable (WORM)&lt;br&gt;• 7+ years storage" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="85" y="340" width="120" height="70" as="geometry"/>
+        </mxCell>
+        
+        <!-- Lineage Log -->
+        <mxCell id="lineage-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="240" y="460" width="250" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="lineage-title" value="&lt;b&gt;lineage/&lt;/b&gt; (Audit Trail)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="300" y="465" width="130" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="lineage-notes" value="• Data provenance tracking&lt;br&gt;• Transformation history&lt;br&gt;• Governance audit logs" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="255" y="485" width="220" height="50" as="geometry"/>
+        </mxCell>
+        
+        <!-- External: Consumption Layer -->
+        <mxCell id="consumption-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="150" width="150" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="consumption-title" value="&lt;b&gt;Consumption Layer&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="810" y="155" width="130" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="consumption-athena" value="📊 Athena" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#333;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="820" y="185" width="110" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="consumption-bi" value="📈 BI Tools" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#333;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="820" y="225" width="110" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="consumption-ml" value="🤖 ML Pipelines" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#333;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="820" y="265" width="110" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- Arrow: Landing -> Validated -->
+        <mxCell id="arrow-land-val" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="210" as="sourcePoint"/>
+            <mxPoint x="240" y="210" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-land-val-label" value="Quality&#xa;Gate" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="200" y="220" width="50" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- Arrow: Validated -> Curated -->
+        <mxCell id="arrow-val-cur" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#9673a6;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="370" y="210" as="sourcePoint"/>
+            <mxPoint x="400" y="210" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-val-cur-label" value="Transform&#xa;+ Enrich" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="355" y="220" width="60" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- Arrow: Master -> Curated (lookup) -->
+        <mxCell id="arrow-master-cur" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#b85450;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="210" as="sourcePoint"/>
+            <mxPoint x="530" y="210" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-master-cur-label" value="Lookup&#xa;Enrich" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="530" y="220" width="50" height="30" as="geometry"/>
+        </mxCell>
+        
+        <!-- Arrow: Curated -> Consumption -->
+        <mxCell id="arrow-cur-cons" value="" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#6c8ebf;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="530" y="190" as="sourcePoint"/>
+            <mxPoint x="800" y="240" as="targetPoint"/>
+            <Array as="points">
+              <mxPoint x="760" y="190"/>
+              <mxPoint x="760" y="240"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Arrow: All to Lineage -->
+        <mxCell id="arrow-land-lin" value="" style="endArrow=classic;html=1;strokeWidth=1;strokeColor=#d79b00;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="145" y="270" as="sourcePoint"/>
+            <mxPoint x="280" y="460" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-val-lin" value="" style="endArrow=classic;html=1;strokeWidth=1;strokeColor=#d79b00;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="305" y="270" as="sourcePoint"/>
+            <mxPoint x="340" y="460" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-cur-lin" value="" style="endArrow=classic;html=1;strokeWidth=1;strokeColor=#d79b00;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="465" y="270" as="sourcePoint"/>
+            <mxPoint x="400" y="460" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-mas-lin" value="" style="endArrow=classic;html=1;strokeWidth=1;strokeColor=#d79b00;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="625" y="270" as="sourcePoint"/>
+            <mxPoint x="460" y="460" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Legend -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="380" width="180" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-title" value="&lt;b&gt;Legend&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="620" y="385" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-raw" value="raw/ - Landing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="570" y="410" width="80" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-val" value="validated/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="655" y="410" width="75" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-cur" value="curated/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="570" y="435" width="75" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-mas" value="master/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="655" y="435" width="75" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-arc" value="archive/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="570" y="460" width="75" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-lin" value="lineage/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="655" y="460" width="75" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-arrow1" value="→ Data Flow" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="570" y="490" width="80" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-arrow2" value="⇢ Audit Trail" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="655" y="490" width="80" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-arrow3" value="⇠ Lookup" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="570" y="510" width="80" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-gov" value="🔒 Governance" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="655" y="510" width="80" height="20" as="geometry"/>
+        </mxCell>
+        
+        <!-- Title -->
+        <mxCell id="main-title" value="OUBT-PROJECT: S3 Data Lake Zone Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="500" height="40" as="geometry"/>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
