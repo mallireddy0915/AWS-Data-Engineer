@@ -1,0 +1,23 @@
+version: 1
+domain: NYC_Taxi
+dimensions:
+  dim_zone:
+    source: "mdm.dim_zone_scd2 (golden record)"
+    rule: "Use current APPROVED version only; denormalize for analytics"
+    keys:
+      natural_key: location_id
+      surrogate_key: zone_sk (generated in dim_zone)
+  dim_vendor:
+    source: "mdm.dim_vendor (golden record) + lifecycle"
+    rule: "Only ACTIVE vendors; names standardized"
+facts:
+  fact_yellow_trip:
+    source: "S3 curated parquet trips"
+    joins:
+      - dim_zone on PULocationID/DOLocationID (conformed)
+      - dim_vendor on VendorID
+governance:
+  conformed_dimensions: [dim_zone, dim_vendor, dim_date]
+  quality_expectations:
+    - orphan_rate_pu_do <= 0.1%
+    - negative_amount_rows = 0
