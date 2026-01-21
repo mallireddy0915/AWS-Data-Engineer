@@ -1,0 +1,22 @@
+version: 1
+domain: vendor
+thresholds:
+  auto_merge: 0.95
+  steward_review: 0.80   # 0.80–0.95
+fields:
+  - name: vendor_name
+    weight: 0.85
+    method: "string_similarity"
+  - name: vendor_id
+    weight: 0.15
+    method: "exact"
+normalization:
+  lowercase: true
+  strip_punctuation: true
+survivorship:
+  auto_merge_strategy: "prefer_active_record"
+  field_rules:
+    vendor_name: "longest_non_null"
+lifecycle:
+  allowed_states: ["PROPOSED", "ACTIVE", "DEPRECATED", "RETIRED"]
+  default_state: "ACTIVE"
