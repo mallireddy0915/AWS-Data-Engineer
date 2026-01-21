@@ -1,0 +1,17 @@
+{
+  "LandingRaw": {
+    "read": ["s3:GetObject", "s3:ListBucket"],
+    "write": ["s3:PutObject", "s3:PutObjectTagging"],
+    "prefixes": ["landing/", "raw/"]
+  },
+  "ValidatedCurated": {
+    "read": ["s3:GetObject", "s3:ListBucket"],
+    "write": ["s3:PutObject", "s3:PutObjectTagging"],
+    "prefixes": ["validated/", "curated/"]
+  },
+  "MasterArchive": {
+    "read": ["s3:GetObject", "s3:ListBucket"],
+    "write": ["s3:PutObjectTagging"],
+    "prefixes": ["master/", "archive/"]
+  }
+}
